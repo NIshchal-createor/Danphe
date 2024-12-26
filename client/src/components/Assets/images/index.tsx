@@ -1,0 +1,9 @@
+export { default as Logo } from "./danpheinternationallogo.jpg";
+export { default as Consultancy } from "./consultancy.jpg";
+export { default as WorldDark } from "./worlddark.jpg";
+export { default as World } from "./world.png";
+export { default as UpwardCurve } from "./upwardcurve.jpg"
+export { default as Insurance } from "./InsuranceIcon.jpg"
+export { default as Translation } from "./TranslationsIcon.jpg"
+export { default as Expense } from "./OfficeExpenses.jpg"
+export { default as Appointments } from "./AppointmentIcon.jpg"

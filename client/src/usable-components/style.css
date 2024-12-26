@@ -1,0 +1,12 @@
+#scrollToTop {
+  animation: gotop 1s linear infinite alternate-reverse;
+}
+
+@keyframes gotop {
+  0% {
+    transform: translateY(-0.2rem);
+  }
+  100% {
+    transform: translateY(0.2rem);
+  }
+}
