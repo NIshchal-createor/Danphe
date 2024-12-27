@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { axiosPost } from "../../Services/axiosInterceptor";
-    import {
-    adminlogIn,
-    getAdminAccessTokenFromLocalStorage,
- } from "../../Services/helpers";
+import {
+  adminlogIn,
+  getAdminAccessTokenFromLocalStorage,
+} from "../../Services/helpers";
 import { useAppDispatch, useAppSelector } from "../../Hooks/useRedux";
 import { adminLogin } from "../../Store/Features/adminSlice";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useForm } from "../../Hooks/useForm";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Logo } from "../../components/Assets/images";
 
 const Login: React.FunctionComponent = () => {
   const [serverError, setServerError] = useState({ email: "", password: "" });
@@ -35,21 +36,20 @@ const Login: React.FunctionComponent = () => {
     e.preventDefault();
 
     try {
-        if (validate()) {
-            const response = await axiosPost("admin/login", states);
-            if (response.data && response.data.message === "Login Successful") {
-                adminlogIn(response.data.accessToken);
-                dispatch(adminLogin(getAdminAccessTokenFromLocalStorage()));
-                toast.success("Login Successful", {
-                  });
+      if (validate()) {
+        const response = await axiosPost("admin/login", states);
+        if (response.data && response.data.message === "Login Successful") {
+          adminlogIn(response.data.accessToken);
+          dispatch(adminLogin(getAdminAccessTokenFromLocalStorage()));
+          toast.success("Login Successful", {});
 
-                setTimeout(() => {
-                   navigate("/admin");
-                }, 1500);
-            }
+          setTimeout(() => {
+            navigate("/admin");
+          }, 1500);
         }
+      }
     } catch (error: any) {
-        console.log(error)
+      console.log(error);
       if (error.response) {
         if (error.response.status === 500) {
           // navigate("servererror");
@@ -80,22 +80,21 @@ const Login: React.FunctionComponent = () => {
   return (
     <>
       {
-    //   !token ?
-       (
+        //   !token ?
         <section className="bg-gray-50">
           <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
             <Link
               to="/"
-              className="flex items-center mb-6 text-2xl font-semibold text-gray-900"
+              className="flex flex-col items-center mb-6 text-2xl font-semibold text-gray-900 gap-4"
             >
-              <div className="flex w-8 h-8 overflow-hidden">
+              <div className="flex w-28 h-28 overflow-hidden">
                 <img
-                  className="w-full h-full object-cover scale-[1.5] mr-2"
-                  src="/images/jakapng.png"
+                  className="w-full h-full object-cover rounded-full"
+                  src={Logo}
                   alt="logo"
                 />
               </div>
-              Jaka Nepal
+              Danphe International Consultancy Pvt. Ltd.
             </Link>
             <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-sm xl:p-0">
               <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -113,8 +112,8 @@ const Login: React.FunctionComponent = () => {
                       id="email"
                       className={
                         errors.email || serverError.email
-                          ? "bg-gray-50 border border-red-500 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 outline-none":
-                           "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 outline-none"
+                          ? "bg-gray-50 border border-red-500 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 outline-none"
+                          : "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 outline-none"
                       }
                       placeholder="admin@gmail.com"
                       onFocus={(e) => handleFocus(e)}
@@ -138,8 +137,8 @@ const Login: React.FunctionComponent = () => {
                       placeholder="••••••••"
                       className={
                         errors.password || serverError.password
-                          ? "bg-gray-50 border border-red-500 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 outline-none":
-                           "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 outline-none"
+                          ? "bg-gray-50 border border-red-500 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 outline-none"
+                          : "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 outline-none"
                       }
                       onFocus={(e) => handleFocus(e)}
                       onChange={handleChange}
@@ -148,6 +147,13 @@ const Login: React.FunctionComponent = () => {
                       {errors.password || serverError.password}
                     </span>
                   </div>
+
+                  <div className="flex justify-end text-secondary underline -mt-5">
+                    <Link to="#" className="text-right">
+                      Forgot Password ???
+                    </Link>
+                  </div>
+
                   <div className="flex">
                     <button
                       type="submit"
@@ -163,12 +169,11 @@ const Login: React.FunctionComponent = () => {
           </div>
           <ToastContainer />
         </section>
-      ) 
-      
-    //   : (
-    //     <Navigate to={"/admin"} />
-    //   )
-    }
+
+        //   : (
+        //     <Navigate to={"/admin"} />
+        //   )
+      }
     </>
   );
 };
