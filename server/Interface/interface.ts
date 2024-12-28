@@ -59,18 +59,15 @@ export interface prdictSales extends salesTable {
   price: number;
 }
 
-export interface brand {
-  brand_name: string;
-  brand_desc: string;
-  brand_image: string;
-  total_quantity: number;
-  price: number;
-  created_At: Date;
-  updated_At: Date;
+export interface office_expenses {
+ particular: string;
+ amount: number;
+ created_At: Date;
+ updated_At: Date;
 }
 
-export interface brandTable extends brand {
-  brand_id: string;
+export interface office_expensesTable extends office_expenses {
+  expense_id: string;
 }
 
 export interface mutlerFile {

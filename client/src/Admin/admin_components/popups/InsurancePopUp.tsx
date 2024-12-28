@@ -26,7 +26,7 @@ const InsurancePopUp: React.FC<InsurancePopUpProps> = ({ handleDisplay }) => {
               Issue Date:
             </label>
             <input
-              type="datetime-local"
+              type="date"
               className="outline-none px-3 py-1 text-sm border border-black rounded-lg h-fit w-full min-w-[8rem] max-w-[12rem]"
               id="person"
               placeholder="Name of Person..."
@@ -81,7 +81,7 @@ const InsurancePopUp: React.FC<InsurancePopUpProps> = ({ handleDisplay }) => {
               Start Date:
             </label>
             <input
-              type="datetime-local"
+              type="date"
               className="outline-none px-3 py-1 text-sm border border-black rounded-lg h-fit w-full min-w-[8rem] max-w-[12rem]"
               placeholder="Start Date..."
             />
@@ -92,7 +92,7 @@ const InsurancePopUp: React.FC<InsurancePopUpProps> = ({ handleDisplay }) => {
               Return Date:
             </label>
             <input
-              type="datetime-local"
+              type="date"
               className="outline-none px-3 py-1 text-sm border border-black rounded-lg h-fit w-full min-w-[8rem] max-w-[12rem]"
               placeholder="Return Date..."
             />

@@ -1,10 +1,35 @@
-import React from "react";
+import React, {useState} from "react";
+import Select from 'react-select'
+import { counter } from "../../../Interface/interface";
+
 
 interface AccountPopUpProps {
   handleDisplay: () => void;
 }
 
 const AccountPopUp: React.FC<AccountPopUpProps> = ({ handleDisplay }) => {
+
+  const counters = [
+    { value: 'counter1', label: 'Counter 1' },
+    { value: 'counter2', label: 'Counter 2' },
+  ];
+
+  const amount_status = [
+    { value: 'debit', label: 'Debit' },
+    { value: 'debit(QR)', label: 'Debit(QR)' },
+    { value: 'credit', label: 'Credit' },
+  ]
+  const payement_method = [
+    { value: 'cash', label: 'Cash' },
+    { value: 'bank', label: 'Bank' },
+    { value: 'fonepay', label: 'FonePay' },
+  ]
+
+
+  const [counter, setCounter] = useState() as any;
+  const [status, setStatus] = useState() as any;
+  const [method, setMethod] = useState() as any;
+
   return (
     <div className="z-50 w-screen h-screen bg-opacity-30 grid place-items-center fixed top-0 left-0 bg-black">
       <div className="flex gap-5 bg-primary w-full max-w-[25rem] min-w-[15rem] relative rounded-xl overflow-hidden">
@@ -36,7 +61,8 @@ const AccountPopUp: React.FC<AccountPopUpProps> = ({ handleDisplay }) => {
             <label htmlFor="counter" className="font-bold text-md">
               Counter:
             </label>
-            <select
+            <Select options = {counters} onChange={setCounter} />
+            {/* <select
               name="counter"
               id="counter"
               className="outline-none px-3 py-1 text-sm"
@@ -47,7 +73,7 @@ const AccountPopUp: React.FC<AccountPopUpProps> = ({ handleDisplay }) => {
               <option value="Counter 2" className="capitalize">
                 Counter 2
               </option>
-            </select>
+            </select> */}
           </div>
           <div className="flex flex-col">
             <label htmlFor="amount" className="font-bold text-md">
@@ -63,41 +89,14 @@ const AccountPopUp: React.FC<AccountPopUpProps> = ({ handleDisplay }) => {
             <label htmlFor="amountstatus" className="font-bold text-md">
               Amount Status:
             </label>
-            <select
-              name="amountstatus"
-              id="amountstatus"
-              className="outline-none px-3 py-1 text-sm"
-            >
-              <option value="Debit" className="capitalize">
-                Debit
-              </option>
-              <option value="Debit (QR)" className="capitalize">
-                Debit (QR)
-              </option>
-              <option value="Credit" className="capitalize">
-                Credit
-              </option>
-            </select>
+            <Select options = {amount_status} onChange={setStatus} />
+           
           </div>
           <div className="flex flex-col">
             <label htmlFor="paymentmethod" className="font-bold text-md">
               Payment Method:
             </label>
-            <select
-              name="paymentmethod"
-              id="paymentmethod"
-              className="outline-none px-3 py-1 text-sm"
-            >
-              <option value="Cash" className="capitalize">
-                Cash
-              </option>
-              <option value="Bank" className="capitalize">
-                Bank
-              </option>
-              <option value="FonePay" className="capitalize">
-                FonePay
-              </option>
-            </select>
+            <Select options = {payement_method} onChange={setMethod} />
           </div>
           <div className="flex justify-center">
             <button className="text-white rounded-lg hover:bg-opacity-70 bg-black py-1 px-4 font-semibold text-md mt-3 w-fit">
