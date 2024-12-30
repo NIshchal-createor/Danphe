@@ -22,8 +22,15 @@ export const updateOfficeExpensesBodySchema= {
         }),
       })
   };
-export type updateOfficeExpensesBodySchema = TypeOf<typeof updateOfficeExpensesBodySchema.body>;
+export type updateOfficeExpensesBodyType= TypeOf<typeof updateOfficeExpensesBodySchema.body>;
 
+export const idOfficeExpenseParamSchema = {
+  body: object({
+    expense_id : string({required_error: "Expense Id is required"}).uuid()
+  })
+}
+
+export type  idOfficeExpenseParamType = TypeOf<typeof idOfficeExpenseParamSchema.body>;
 
 export const deleteOfficeExpensesBodySchema= {
     body: object({
@@ -32,4 +39,4 @@ export const deleteOfficeExpensesBodySchema= {
       }).uuid(),
     })
   };
-  export type deleteOfficeExpensesBodySchema = TypeOf<typeof deleteOfficeExpensesBodySchema.body>;    
+  export type deleteOfficeExpensesBodyType = TypeOf<typeof deleteOfficeExpensesBodySchema.body>;    
