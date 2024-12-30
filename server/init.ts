@@ -5,6 +5,8 @@ import helmet, { xssFilter } from "helmet";
 import Logger from "./Utils/Logger/Logger";
 import cors from "cors";
 import adminRoutes from "./Routes/Admin.routes";
+import accountRoutes from "./Routes/Account.routes";
+import OfficeExpensesRoutes from "./Routes/Office_expenses.routes"
 import HandleError from "./Utils/Logger/HandleError";
 import Sql from "./Utils/Database/Action";
 
@@ -41,6 +43,9 @@ const init = (app: Express) => {
   });
 
   app.use("/admin", adminRoutes);
+  app.use("/account", accountRoutes);
+  app.use("/office-expenses",OfficeExpensesRoutes)
+
 
   app.listen(Config.server.port, () => {
     Logger.info(`Listening at ${Config.server.port} in ${process.pid}`);
