@@ -1,22 +1,17 @@
-import {object, string, TypeOf } from "zod";
+import {z, number, object, string, TypeOf } from "zod";
+import { updateOfficeExpensesBodySchema } from "./Office_expenses";
 
 export const addAccountBodySchema= {
   body: object({
     particular: string({
       required_error: "Particular is Required",
     }),
-    counter: string({
-        required_error: "Counter is required"
-    }),
-    amount: string({
+    counter: z.enum(['COUNTER 1', 'COUNTER 2']),
+    amount: number({
         required_error: "Amount is required"
     }),
-    amount_status: string({
-        required_error: "Amount status is required"
-    }),
-    payment_method: string({
-        required_error: "Payment method is required"
-    }),
+    amount_status: z.enum(['DEBIT', 'DEBIT(QR)', 'CREDIT']),
+    payment_method: z.enum(['CASH', 'BANK', 'FONEPAY'])
   }).strict("Please Enter required field"),
 };
 
@@ -28,25 +23,28 @@ export const updateAccountBodySchema= {
     particular: string({
       required_error: "Particular is Required",
     }),
-    counter: string({
-        required_error: "Counter is required"
-    }),
-    amount: string({
+    counter: z.enum(['COUNTER 1', 'COUNTER 2']),
+    amount: number({
         required_error: "Amount is required"
     }),
-    amount_status: string({
-        required_error: "Amount status is required"
-    }),
-    payment_method: string({
-        required_error: "Payment method is required"
-    }),
+    amount_status: z.enum(['DEBIT', 'DEBIT(QR)', 'CREDIT']),
+    payment_method: z.enum(['CASH', 'BANK', 'FONEPAY'])
   })
-  
 };
+
+export type updateAccountBodyType = TypeOf<typeof updateAccountBodySchema.body>
 
 export const deleteAccountBodySchema = {
   body: object({
-    brand_id: string({ required_error: "Brand id is required" }).uuid(),
+    account_id: string({ required_error: "account_id is required" }).uuid(),
   }),
 };
 export type deleteAccountBodyType = TypeOf<typeof deleteAccountBodySchema.body>;
+
+export const idAccountBodySchema = {
+  body: object({
+    account_id: string({required_error: "account id is required="})
+  })
+}
+
+export type idAccountBodyType = TypeOf<typeof idAccountBodySchema.body>
