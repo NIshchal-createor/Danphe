@@ -48,6 +48,36 @@ export interface accountsTable extends accounts{
   account_id: string
 }
 
+export interface appointments{
+  name_of_person : string;
+  contact_no: number;
+  country: string;
+  appointment_date: Date;
+  purpose_of_visit: string;
+  email: string;
+  remark: string;
+}
+
+export interface appointmentsTable extends appointments{
+  appointment_id:string;
+}
+
+export interface insurance{
+  name_of_person : string;
+  country: string;
+  certificate: string;
+  duration: string;
+  start_date: Date;
+  return_date: Date;
+  amount: number;
+  payment: number;
+  remark: string;
+}
+
+export interface insuranceTable extends insurance{
+  insurance_id: string;
+}
+
 export interface mutlerFile {
   fieldname: string;
   originalname: string;

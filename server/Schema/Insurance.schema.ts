@@ -9,6 +9,7 @@ export const addInsuranceBodySchema= {
     certificate_number: string({
         required_error: "Certificate number is required"
     }).max(50),
+    duration: string().optional(),
     start_date: string({
         required_error: "Start date is required"
     }),
@@ -20,7 +21,7 @@ export const addInsuranceBodySchema= {
     remark: string().optional(),
   })
 };
-export type addAppointmentBodySchema = TypeOf<typeof addInsuranceBodySchema.body>;
+export type addInsuranceBodyType = TypeOf<typeof addInsuranceBodySchema.body>;
 
 export const updateInsuranceBodySchema= {
     body: object({
@@ -31,6 +32,7 @@ export const updateInsuranceBodySchema= {
         certificate_number: string({
             required_error: "Certificate number is required"
         }).max(50),
+        duration: string().optional(),
         start_date: string({
             required_error: "Start date is required"
         }),
@@ -42,7 +44,7 @@ export const updateInsuranceBodySchema= {
         remark: string().optional(),
       })
   };
-export type updateInsuranceBodySchema = TypeOf<typeof updateInsuranceBodySchema.body>;
+export type updateInsuranceBodyType = TypeOf<typeof updateInsuranceBodySchema.body>;
 
 export const deleteInsuranceBodySchema= {
     body: object({
@@ -52,3 +54,13 @@ export const deleteInsuranceBodySchema= {
     })
   };
   export type deleteInsuranceBodySchema = TypeOf<typeof deleteInsuranceBodySchema.body>;
+
+  export const idInsuranceBodySchema= {
+    body: object({
+      insurance_id: string({
+        required_error: "Insurance id is Required",
+      }).uuid(),
+    })
+  };
+
+  export type idInsuranceBodyType = TypeOf<typeof idInsuranceBodySchema.body>;

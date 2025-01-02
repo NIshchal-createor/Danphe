@@ -15,7 +15,7 @@ export const addAppointmentBodySchema= {
     remark: string().optional()
   })
 };
-export type addAppointmentBodySchema = TypeOf<typeof addAppointmentBodySchema.body>;
+export type addAppointmentBodyType = TypeOf<typeof addAppointmentBodySchema.body>;
 
 export const updateAppointmentBodySchema= {
     body: object({
@@ -32,7 +32,7 @@ export const updateAppointmentBodySchema= {
       remark: string().optional()
     })
   };
-export type updateAppointmentBodySchema = TypeOf<typeof updateAppointmentBodySchema.body>;
+export type updateAppointmentBodyType = TypeOf<typeof updateAppointmentBodySchema.body>;
 
 export const deleteAppointmentBodySchema= {
     body: object({
@@ -41,4 +41,13 @@ export const deleteAppointmentBodySchema= {
       }).uuid(),
     })
   };
-  export type deleteAppointmentBodySchema = TypeOf<typeof updateAppointmentBodySchema.body>;
+  export type deleteAppointmentBodyType = TypeOf<typeof deleteAppointmentBodySchema.body>;
+
+
+  export const idAppointmentBodySchema = {
+    body: object({
+      appointment_id: string({required_error: "account id is required="})
+    })
+  }
+  
+  export type idAppointmentBodyType = TypeOf<typeof idAppointmentBodySchema.body>
