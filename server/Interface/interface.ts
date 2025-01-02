@@ -24,40 +24,6 @@ export interface jwtToken {
   exp: number;
 }
 
-export interface purchase {
-  product_name: string;
-  colour: string;
-  product_image: string;
-  brand_id: string;
-  quantity: number;
-  createdAt: Date;
-  updateAt: Date;
-}
-
-export interface purchaseTable extends purchase {
-  product_id: string;
-}
-
-export interface stocksTable {
-  product_id: string;
-  stocks: number;
-}
-
-export interface sales {
-  product_id: string;
-  quantity: number;
-  price: number;
-  created_At: Date;
-  updated_At: Date;
-}
-
-export interface salesTable extends sales {
-  sales_id: string;
-}
-
-export interface prdictSales extends salesTable {
-  price: number;
-}
 
 export interface office_expenses {
  particular: string;
@@ -68,6 +34,48 @@ export interface office_expenses {
 
 export interface office_expensesTable extends office_expenses {
   expense_id: string;
+}
+
+export interface accounts{
+  particular: string;
+  counter: string;
+  amount: number;
+  amount_status : string;
+  payment_method : string;
+}
+
+export interface accountsTable extends accounts{
+  account_id: string
+}
+
+export interface appointments{
+  name_of_person : string;
+  contact_no: number;
+  country: string;
+  appointment_date: Date;
+  purpose_of_visit: string;
+  email: string;
+  remark: string;
+}
+
+export interface appointmentsTable extends appointments{
+  appointment_id:string;
+}
+
+export interface insurance{
+  name_of_person : string;
+  country: string;
+  certificate: string;
+  duration: string;
+  start_date: Date;
+  return_date: Date;
+  amount: number;
+  payment: number;
+  remark: string;
+}
+
+export interface insuranceTable extends insurance{
+  insurance_id: string;
 }
 
 export interface mutlerFile {

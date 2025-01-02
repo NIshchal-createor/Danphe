@@ -7,6 +7,8 @@ import cors from "cors";
 import adminRoutes from "./Routes/Admin.routes";
 import accountRoutes from "./Routes/Account.routes";
 import OfficeExpensesRoutes from "./Routes/Office_expenses.routes"
+import appointmentRoutes from "./Routes/Appointment.routes"
+import insuranceRoutes from "./Routes/Insurance.routes"
 import HandleError from "./Utils/Logger/HandleError";
 import Sql from "./Utils/Database/Action";
 
@@ -44,7 +46,9 @@ const init = (app: Express) => {
 
   app.use("/admin", adminRoutes);
   app.use("/account", accountRoutes);
-  app.use("/office-expenses",OfficeExpensesRoutes)
+  app.use("/office-expenses", OfficeExpensesRoutes)
+  app.use("/appointment", appointmentRoutes)
+  app.use("/insurance", insuranceRoutes)
 
 
   app.listen(Config.server.port, () => {
