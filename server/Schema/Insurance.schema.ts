@@ -53,7 +53,7 @@ export const deleteInsuranceBodySchema= {
       }).uuid(),
     })
   };
-  export type deleteInsuranceBodySchema = TypeOf<typeof deleteInsuranceBodySchema.body>;
+  export type deleteInsuranceBodyType = TypeOf<typeof deleteInsuranceBodySchema.body>;
 
   export const idInsuranceBodySchema= {
     body: object({
