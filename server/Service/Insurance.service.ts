@@ -2,7 +2,7 @@ import {appointmentsTable, insuranceTable, sqlQuery } from "../Interface/interfa
 import Sql from "../Utils/Database/Action"
 import crypto from "crypto";
 import {addAppointmentBodyType, deleteAppointmentBodyType, idAppointmentBodyType, updateAppointmentBodyType } from "../Schema/Appointment.schema";
-import { addInsuranceBodyType, idInsuranceBodyType, updateInsuranceBodySchema, updateInsuranceBodyType } from "../Schema/Insurance.schema";
+import { addInsuranceBodyType, deleteInsuranceBodyType, idInsuranceBodyType, updateInsuranceBodySchema, updateInsuranceBodyType } from "../Schema/Insurance.schema";
 
 export async function addInsuranceService({name_of_person, certificate_number, start_date, end_date, amount, client_payment, destination_country, remark, duration}:addInsuranceBodyType): Promise<any> {  
     const insurance_id = crypto.randomUUID()
@@ -68,4 +68,40 @@ console.log(insurance_id)
         statusNumber: 404
     }
    }
+}
+
+
+
+export async function deleteInsuranceService({insurance_id}:deleteInsuranceBodyType):Promise<any> {
+    const [insurance_to_be_deleted] = await Sql.runQuery("SELECT * FROM insurance WHERE insurance_id = ?", [insurance_id]) as Array<insuranceTable>
+
+    if(insurance_to_be_deleted!=undefined){
+        const {affectedRows} = await Sql.runQuery("DELETE FROM insurance WHERE insurance_id = ?", [insurance_id]) as sqlQuery
+
+        if (affectedRows > 0){
+            return{
+                response: {
+                    message: "Insurance Deleted sucessfully",
+                    insurance : insurance_to_be_deleted
+                },
+                statusNumber: 200
+            }
+        }else{
+            return{
+                response: {
+                    message: "Insurance deletion unsucessful",
+                    insurance : {}
+                },
+                statusNumber: 400
+            }
+        }
+    }else{
+        return{
+            response: {
+                message: "Insurance not found",
+                insurance : {}
+            },
+            statusNumber: 404
+        }
+    }
 }
